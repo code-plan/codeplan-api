@@ -1,0 +1,44 @@
+{
+  "name": "codeplan-api",
+  "version": "1.0.0",
+  "description": "Codeplan by Open Build app made with <3 on NodeJS and ExpressJS",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "fmt": "yarn prettier --write .",
+    "migrate": "yarn knex migrate:latest",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viniciusantonioli/codeplan-api.git"
+  },
+  "author": "Vinícius Antonioli <vinicius@openbuild.dev>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/viniciusantonioli/codeplan-api/issues"
+  },
+  "homepage": "https://github.com/viniciusantonioli/codeplan-api#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.95.4",
+    "lodash": "^4.17.21",
+    "mailgun-js": "^0.22.0",
+    "mongoose": "^5.12.3",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "pg": "^8.6.0",
+    "twilio": "^3.60.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7",
+    "prettier": "2.2.1"
+  }
+}
