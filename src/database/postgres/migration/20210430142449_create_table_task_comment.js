@@ -1,7 +1,7 @@
 exports.up = (knex) =>
-  knex.schema.createTable("markdown_annotation", (table) => {
+  knex.schema.createTable("task_comment", (table) => {
     table.increments("id");
-    table.integer("project_id").notNullable();
+    table.integer("task_id").notNullable();
     table.integer("profile_id").notNullable();
     table.string("content").notNullable();
 
@@ -9,8 +9,8 @@ exports.up = (knex) =>
     table.timestamp("updated_at").defaultTo(knex.fn.now());
 
     table
-      .foreign("project_id")
-      .references("project.id")
+      .foreign("task_id")
+      .references("task.id")
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
     table
@@ -20,4 +20,4 @@ exports.up = (knex) =>
       .onDelete("CASCADE");
   });
 
-exports.down = (knex) => knex.schema.dropTable("markdown_annotation");
+exports.down = (knex) => knex.schema.dropTable("task_comment");

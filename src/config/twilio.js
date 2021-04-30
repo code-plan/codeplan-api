@@ -6,7 +6,8 @@ const client = require("twilio")(accountSid, authToken);
 module.exports = {
   client,
   send_sms(message, to) {
-    client.messages.create({ body: message, from: "+13474976753", to }).then();
-    // .then((message) => console.log(message.sid));
+    client.messages
+      .create({ body: message, from: "+13474976753", to })
+      .then((message) => console.log(`SMS: ${message.sid}`));
   },
 };

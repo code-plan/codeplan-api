@@ -3,9 +3,6 @@ exports.up = (knex) =>
     table.increments("id");
     table.integer("customer_id").notNullable();
     table.string("name").notNullable();
-    table.string("github_repository").notNullable();
-    table.string("backend_stack").notNullable();
-    table.string("frontend_stack").notNullable();
 
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table.timestamp("updated_at").defaultTo(knex.fn.now());

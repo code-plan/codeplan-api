@@ -4,7 +4,6 @@
 const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
-const knex = require("./src/database/postgres/index");
 
 const app = express();
 
@@ -20,5 +19,5 @@ require("./src/route/client")(app);
 require("./src/route/customer")(app);
 
 app.listen(process.env.PORT || 3000, async () => {
-  console.log(`Servidor ouvindo na porta ${process.env.PORT || 3000} :)`);
+  console.log(`Servidor ouvindo na porta ${process.env.PORT || 3000}.`);
 });

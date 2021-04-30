@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  `${process.env.MONGODB_STRING}/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`,
+  `${process.env.MONGODB_STRING}/${process.env.MONGODB_DATABASE}?authSource=admin&retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
