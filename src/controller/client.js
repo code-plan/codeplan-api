@@ -33,6 +33,11 @@ module.exports = {
       return res
         .status(404)
         .send({ error: "PERFIL NAO ENCONTRADO", errorCode: "CLIENT-CON-4" });
+    if (profile[0].confirmed === false)
+      return res.status(403).send({
+        error: "NECESSARIA A CONFIRMACAO DO PERFIL POR EMAIL",
+        errorCode: "CLIENT-CON-5",
+      });
     let ip = req.ip.split(":");
     const client = await Client.create({
       user_id: user[0].id,
@@ -68,21 +73,21 @@ module.exports = {
     if (isEmpty(username) || isEmpty(password))
       return res.status(400).send({
         error: "NOME DE USUARIO OU SENHA VAZIO",
-        errorCode: "CLIENT-CON-5",
+        errorCode: "CLIENT-CON-6",
       });
     if (isEmpty(client_id))
       return res
         .status(400)
-        .send({ error: "CLIENT ID VAZIO", errorCode: "CLIENT-CON-6" });
+        .send({ error: "CLIENT ID VAZIO", errorCode: "CLIENT-CON-7" });
     const user = await knex("user").where({ username });
     if (!user[0])
       return res
         .status(404)
-        .send({ error: "USUARIO NAO ENCONTRADO", errorCode: "CLIENT-CON-7" });
+        .send({ error: "USUARIO NAO ENCONTRADO", errorCode: "CLIENT-CON-8" });
     if (!(await bcrypt.compare(password, user[0].password)))
       return res
         .status(401)
-        .send({ error: "SENHA INCORRETA", errorCode: "CLIENT-CON-8" });
+        .send({ error: "SENHA INCORRETA", errorCode: "CLIENT-CON-9" });
     const client = await Client.findOne({
       _id: client_id,
       user_id: user[0].id,
@@ -90,7 +95,7 @@ module.exports = {
     if (!client)
       return res.status(400).send({
         error: "CLIENT NAO ENCONTRADO OU NAO PERTENCE AO USUARIO INFORMADO",
-        errorCode: "CLIENT-CON-9",
+        errorCode: "CLIENT-CON-10",
       });
     await Client.updateOne({ _id: client_id }, { enabled: false });
     return res.status(200).send({ client: { id: client_id, enabled: false } });
@@ -100,17 +105,17 @@ module.exports = {
     if (isEmpty(code) || isEmpty(client_id))
       return res.status(400).send({
         error: "ID DO CLIENT OU CODIGO DE CONFIRMACAO VAZIO",
-        errorCode: "CLIENT-CON-10",
+        errorCode: "CLIENT-CON-11",
       });
     const codeDb = await Token.findOne({ token: code });
     if (!codeDb)
       return res
         .status(404)
-        .send({ error: "CODIGO NAO ENCONTRADO", errorCode: "CLIENT-CON-11" });
+        .send({ error: "CODIGO NAO ENCONTRADO", errorCode: "CLIENT-CON-12" });
     if (codeDb.client_id != client_id)
       return res.status(403).send({
         error: "CODIGO NAO PERTENCE AO USUARIO INFORMADO",
-        errorCode: "CLIENT-CON-12",
+        errorCode: "CLIENT-CON-13",
       });
     await Client.updateOne({ _id: codeDb.client_id }, { confirmed: true });
     const client = await Client.findById(codeDb.client_id);

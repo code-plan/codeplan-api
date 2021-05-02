@@ -145,7 +145,7 @@ module.exports = {
         name: profile[0].name,
         surname: profile[0].surname,
         email: profile[0].email,
-        phoneNumber: profile[0].phone_number,
+        phone_number: profile[0].phone_number,
         confirmed: false,
       },
     });
