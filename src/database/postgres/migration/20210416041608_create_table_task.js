@@ -10,6 +10,7 @@ exports.up = (knex) =>
     table.boolean("recurrent").notNullable().defaultTo(false);
     table.timestamp("begin_date").notNullable();
     table.timestamp("end_date");
+    table.timestamp("finish_date");
 
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table.timestamp("updated_at").defaultTo(knex.fn.now());

@@ -1,5 +1,5 @@
 exports.up = (knex) =>
-  knex.schema.createTable("markdown_annotation", (table) => {
+  knex.schema.createTable("annotation", (table) => {
     table.increments("id");
     table.integer("project_id").notNullable();
     table.integer("profile_id").notNullable();
@@ -20,4 +20,4 @@ exports.up = (knex) =>
       .onDelete("CASCADE");
   });
 
-exports.down = (knex) => knex.schema.dropTable("markdown_annotation");
+exports.down = (knex) => knex.schema.dropTable("annotation");
