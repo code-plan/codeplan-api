@@ -26,7 +26,7 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.4",
     "lodash": "^4.17.21",
-    "mailgun-js": "^0.22.0",
+    "mailgun-js": "^0.6.7",
     "mongoose": "^5.12.3",
     "morgan": "^1.10.0",
     "path": "^0.12.7",
